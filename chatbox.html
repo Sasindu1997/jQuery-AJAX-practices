@@ -55,18 +55,30 @@
         $(function(){
             $("#textbox").keypress(function(e){
                 if(e.which == 13){
+
                     if($("#enter").prop("checked")){
                         console.log("enter passed");
-                        e.preventDefault();
+                        $("#send").click();
+                        e.preventDefault(); 
                     }
                 } 
             });
+            $("#send").click(function(){
+                var newMsg = $("#textbox").val();
+                var prevMsg = $("#container").html();
+
+                $("#textbox").val("");
+                $("#container").html(prevMsg + "<br>" + newMsg);
+                
+
+            });
+
         });
     </script>
 
     <div id="header">
         <div>
-            <h1>jQuery Chatbot v. 3.5.1 </h1>
+            <h1>jQuery Chatbot v. 1.0</h1>
         </div>
         <div id="container">
 
