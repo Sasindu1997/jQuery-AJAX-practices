@@ -96,9 +96,17 @@ background: #88ba1c;
         function ai(massage){
             if(userName.length<3){
                 userName = massage;
-                send_massage("Welcome " + userName)
+                send_massage("Welcome " + userName);
             }
-            
+            if(massage.indexOf("how are you")>=0){
+                send_massage("Thanks,I am good!");
+            }
+            if( (massage.indexOf("time")>=0) || (massage.indexOf("hours")>=0)){
+                var date = new Date();
+                var h = date.getHours();
+                var m = date.getMinutes();
+                send_massage("Current time: " + h + ":" + m);
+            }
         }
 
         $(function(){
