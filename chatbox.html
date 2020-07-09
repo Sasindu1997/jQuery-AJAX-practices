@@ -67,17 +67,43 @@ border-radius: 10px;
 ::-webkit-scrollbar-thumb:hover {
 background: #88ba1c;  
 }
+
+.username {
+    font-weight: bold;
+}
       
     </style>
 </head>
 <body>
     <script>
+        var userName = "";
+        function send_massage(massage){
+            var prevMsg = $("#container").html();
+
+            if(prevMsg.length > 10){
+                prevMsg = prevMsg + "<br>";
+            }
+            $("#container").html(prevMsg +"<span class='bot'>Chatbot: </span> "+ massage);
+        }
+
+        function get_userName(){
+            send_massage("Enter your name : ");
+        }
+
+        function ai(massage){
+            if(userName.length<3){
+                userName = message;
+            }
+            
+        }
+
         $(function(){
+            get_userName();
             $("#textbox").keypress(function(e){
                 if(e.which == 13){
 
                     if($("#enter").prop("checked")){
-                        console.log("enter passed");
+                        //console.log("enter passed");
                         $("#send").click();
                         e.preventDefault(); 
                     }
@@ -85,14 +111,24 @@ background: #88ba1c;
             });
             $("#send").click(function(){
                 var newMsg = $("#textbox").val();
-                var prevMsg = $("#container").html();
-
+                var userName = "<span class='username' = > You: </span>";
+                
                 $("#textbox").val("");
-                $("#container").html(prevMsg + "<br>" + newMsg);
+
+
+                var prevMsg = $("#container").html();
+                console.log(prevMsg.length);
+
+
+                if(prevMsg.length > 10){
+
+                    prevMsg = prevMsg + "<br>";
+                }
+                $("#container").html(prevMsg + userName + newMsg);
 
                 $("#container").scrollTop($("#container").prop("scrollHeight"));
                 
-
+                ai(newMsg);
             });
 
         });
@@ -110,7 +146,7 @@ background: #88ba1c;
             <button id="send">Send</button>
         </div>
         <div id="controls">
-            <input type="checkbox" id="enter">
+            <input checked type="checkbox" id="enter">
             <label>Send on enter</label>
         </div>
     </div>
