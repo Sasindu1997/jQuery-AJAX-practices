@@ -25,11 +25,12 @@
         }
         #container {
             width: 1024px;
-            min-height: 500px;
+            height: 500px;
             margin: 0px auto;
             background-color: white;
             border: 1px solid #333;
             margin-top: 50px;
+            overflow: scroll;
         }
         #controls{
             width: 1024px;
@@ -47,6 +48,25 @@
             border: 2px solid;
             position: absolute;
         }
+        /* Scrollbar styles */
+::-webkit-scrollbar {
+width: 12px;
+height: 12px;
+}
+
+::-webkit-scrollbar-track {
+border: 1px solid yellowgreen;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+background: yellowgreen;  
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #88ba1c;  
+}
       
     </style>
 </head>
@@ -69,6 +89,8 @@
 
                 $("#textbox").val("");
                 $("#container").html(prevMsg + "<br>" + newMsg);
+
+                $("#container").scrollTop($("#container").prop("scrollHeight"));
                 
 
             });
