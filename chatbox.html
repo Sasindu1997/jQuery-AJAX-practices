@@ -83,7 +83,10 @@ background: #88ba1c;
             if(prevMsg.length > 10){
                 prevMsg = prevMsg + "<br>";
             }
-            $("#container").html(prevMsg +"<span class='bot'>Chatbot: </span> "+ massage);
+            $("#container").html(prevMsg +"<span class='current_massage'>"+"<span class='bot'>Chatbot: </span> </span> "+ massage);
+            $(".current_massage").hide();
+            $(".current_massage").delay(500).fadeIn();
+            //$(".current_massage").removeClass()
         }
 
         function get_userName(){
@@ -92,7 +95,8 @@ background: #88ba1c;
 
         function ai(massage){
             if(userName.length<3){
-                userName = message;
+                userName = massage;
+                send_massage("Welcome " + userName)
             }
             
         }
